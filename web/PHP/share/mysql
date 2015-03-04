@@ -1,0 +1,48 @@
+
+/*******************************************用户**********************************************************/
+create table usrSort(
+name varchar(20) primary key,
+info text
+);
+insert into usrSort(name,info) values('普通用户','存储网址，浏览信息');
+insert into usrSort(name,info) values('管理员','维护网站');
+
+
+create table usr(
+name varchar(20) primary key,
+sort varchar(20)  default '普通用户',
+pass varchar(20) not null ,
+sex varchar(3) not null,
+email varchar(50) not null,
+regTime datetime not null,
+CONSTRAINT fk_usr_sort FOREIGN KEY(sort) references usrSort(name) on update cascade on delete no action
+);
+
+
+ 
+/*******************************************网页**********************************************************/
+ 
+create table addr(
+  id int primary key auto_increment,
+  addr varchar(200) not null,
+  name varchar(100),
+  updatetime datetime
+);
+ 
+
+/*********************************************记录**************************************************************/
+create table usrAddr(
+  addr int  ,
+  uname varchar(20) ,
+  name varchar(100) not null,
+  info text,
+  addtime datetime not null
+);
+Alter table usrAddr drop primary key;
+Alter table usrAddr add primary key(addr,uname);
+/********************************************查询语句********************************/
+SELECT addr.addr AS addr, usrAddr.name AS name, info
+FROM addr, usrAddr
+WHERE addr.id = usrAddr.addr
+				所有中的前10条
+select addr.addr as addr,addr.name as name,count(usrAddr.addr) as sum from addr,usrAddr where addr.id=usrAddr.addr group by usrAddr.addr order by count(usrAddr.addr) desc limit 5

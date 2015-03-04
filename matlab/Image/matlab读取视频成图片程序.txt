@@ -1,0 +1,74 @@
+[filename,pathname,fileindex]=uigetfile('*.avi','选择视频文件','video.avi','Multiselect','on');
+if ischar(filename) %只有选择了文件才进行以下计算
+   video=mmreader([pathname filename]);
+   %%General Settings:
+    %Duration  时间
+    %Name  视频名称
+    %Path  路径
+    %Tag = 
+    %Type = mmreader
+    %UserData = []
+  %%Video Settings:
+    %BitsPerPixel=24
+    %FrameRate 视频采集速率
+    %Height 高度
+    %NumberOfFrames 总帧数
+    %VideoFormat 图像模式
+    %Width = 宽度
+    LEN=video.NumberOfFrames; %获得视频长度
+    dir=strcat(pathname,strrep(filename,'.avi',''),'\pic');
+    mkdir(dir);
+    fn=strrep(filename,'.avi','');
+   for k=1:LEN-1 %若read到len，常会报错如下??? MATLAB:read:readTimedOut，read到len-1就好了
+       frame=rgb2gray(read(video,k));
+       if k<10
+          imwrite(frame,strcat(dir,'\',fn,'-avi-000',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+       elseif k>=10 && k<100
+          imwrite(frame,strcat(dir,'\',fn,'-avi-00',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+       elseif k>=100 && k<1000
+          imwrite(frame,strcat(dir,'\',fn,'-avi-0',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+       elseif k>=1000 && k<10000
+          imwrite(frame,strcat(dir,'\',fn,'-avi-',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+        end        
+   end 
+elseif iscell(filename)
+   navi=length(filename);
+   for n=1:navi
+       video=mmreader([pathname filename{n}]);
+       %%General Settings:
+        %Duration  时间
+        %Name  视频名称
+        %Path  路径
+        %Tag = 
+        %Type = mmreader
+        %UserData = []
+      %%Video Settings:
+        %BitsPerPixel=24
+        %FrameRate 视频采集速率
+        %Height 高度
+        %NumberOfFrames 总帧数
+        %VideoFormat 图像模式
+        %Width = 宽度
+       LEN=video.NumberOfFrames; %获得视频长度
+       dir=strcat(pathname,strrep(filename{n},'.avi',''),'\pic');
+       mkdir(dir);
+       fn=strrep(filename{n},'.avi','');
+       for k=1:LEN-1  %若read到len，常会报错如下??? MATLAB:read:readTimedOut，独到len-1就好了
+           frame=rgb2gray(read(video,k));
+           if k<10
+              imwrite(frame,strcat(dir,'\',fn,'-avi-000',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+           elseif k>=10 && k<100
+              imwrite(frame,strcat(dir,'\',fn,'-avi-00',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+           elseif k>=100 && k<1000
+              imwrite(frame,strcat(dir,'\',fn,'-avi-0',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+           elseif k>=1000 && k<10000
+              imwrite(frame,strcat(dir,'\',fn,'-avi-',int2str(k),'.bmp'),'bmp');%把每帧图像存入硬盘
+           end 
+       end
+       disp(strcat(num2str(n),'/',num2str(navi),' : "',filename{n},'" Finished!',datestr(now,13)));
+   end
+else
+   return
+end
+msgbox('所有帧提取完毕,已写入磁盘！','提示');
+clear all

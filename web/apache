@@ -1,0 +1,2 @@
+ 1. 测试主机响应：ab -n 1000 -c 10 http://sky:80 
+ 2. https访问:安装openssl

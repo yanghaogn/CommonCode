@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+   <title>网页管理 </title>
+   	<script type="text/javascript" src="script/prototype.js"></script>
+		<script type="text/javascript" src="script/rico.js"></script>
+	 
+   <script language="Javascript">
+ 
+          window.returnValue="http://homepage.yesky.com";
+ 
+		</script>
+</head>
+<body   >
+    <fieldset>
+	<legend align="center">添加网页</legend>
+	<p id="_addNotify" align="center"></p><br/>
+	<table>	 
+	  	<tr>
+			<td>网页:</td><td><input type="text" id="_addAddr" onkeypress="javascript:if(event.keyCode==13) _addEnter();"></input></td> 
+		</tr>
+		<tr>
+			<td>名字:</td><td><input type="text" id="_addName" onkeypress="javascript:if(event.keyCode==13) _addEnter();"></input></td> 
+		</tr>
+		<tr>
+			<td>描述:</td><td><input type="text" id="_addInfo" onkeypress="javascript:if(event.keyCode==13) _addEnter();"></input> </td>
+		</tr>
+		 
+		<tr>
+			<td></td><td> <input type="button" id="_addOK" value="添加"  onclick="addSite()"></input>
+								<input type="button" id="_addClear" value="清空"  onclick="addClear()"></input></td> 
+		</tr>
+	 	</table>
+	 </fieldset>
+</body>
+</html>

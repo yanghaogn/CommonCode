@@ -1,0 +1,284 @@
+MATLAB主要命令汇总
+1、常用信息
+•         help:在线帮助（显示在命令窗）。
+•         helpwin:在线帮助（独立窗口显示）。
+•         ver:MATLAB及工具箱的版本信息。
+2、管理工作区命令
+•         who:显示当前变量。
+•         whos:显示当前变量具体信息。
+•         clear:从内存中清楚变量和函数。
+•         quit:退出MATLAB。
+3、管理命令和函数
+•         what:显示当前目录下的MATLAB 文件。
+•         edit:编辑M文件。edit(建立编辑新文 件);edit＋文件名(编辑已有的文件)。
+•         which:找出函数和文件的位置。
+•         type:显示M文件内容。Type+文件名。
+•         Inmem:显示内存中的函数。
+4、操作系统命令
+•         dir:显示目录。
+•         pwd:显示当前工作目录。
+•         delete:删除文件。Delete+文件名。
+•         web:打开页面浏览器加载文件。
+5、数据类型
+•         double:双精度类型
+•         sym:符号型
+•         Inline:内联对象
+•         char:字符数组或字符串。
+•         uint8:无符号8位整数（unsigned   integer）
+6、数据基本操作
+•         max:最大元素。向量为数，矩阵为向量
+•         min:最小元素。类似max.
+•         mean:求平均值。mean(a),a为向量时得到向量平均值，结果为一个数；a为矩阵时，进行每列平均，得到一个向量。
+•         sum:元素和。 sum(a),a为向量时得 到该向量各元素之和，结果为一个数；a为矩阵时，进行每列求和，得到一个向量。
+•         prod:元素积。prod(a)当a为向量和 矩阵时的情况，类似于max(a)。
+•         cumsum:元素累和。cumsum(a),a可为向量，也可为矩阵。
+•         cumprod:元素累积。a可为向量， 也可为矩阵。
+7、基本矩阵函数
+•         zeros:零矩阵函数。
+•         ones:全1矩阵。
+•         eye:单位矩阵。
+•         rand:随机数、向量、矩阵.
+•         linspace:线性等分向量。
+8、基本数组操作
+•         size:矩阵大小。
+•         length:数组长度。
+•         isempty:判断是不是空矩阵。
+•         isequal: 判断数组是否相等。  isequal(a,b)。
+•         isnumeric:判断是否为数值矩阵。
+•         reshape:矩阵重置。
+•         tril:抽取下三角部分。
+•         triu:抽取上三角部分。
+•         fliplr:左右方向翻转矩阵（flip:翻转）。
+•         flipud:上下方向翻转矩阵。
+•         rot90:逆时针把矩阵旋转90度。
+9、专用变量和常量
+•         ans:最新答案。
+•         pi:圆周率。
+•         i,j:复数单位。
+•         inf:无穷大。
+•         NaN:不定数。
+•         isnan:判断不定数。
+•         isinf:判断无穷大元素。
+•         isfinite:判断有限大元素。
+10、指数、对数函数
+•         exp:e指数函数。
+•         pow2:以2为底的幂函数。
+•         sqrt:平方根函数。
+11、舍入函数和剩余函数
+•         fix:朝零方向舍入为整数。
+•         floor:朝负方向舍入为整数。
+•         ceil:朝正方向舍入为整数。
+•         round:四舍五入为整数。
+•         sign:符号函数。
+•         mod:无符号求余函数。mod(3,2)=1
+•         rem:带符号求余函数。
+12、复数函数
+•         abs:求模。
+•         conj:求共轭函数（conjugate）。
+•         angle:相角函数。
+•         imag:复矩阵虚部。
+•         real:复矩阵实部。
+•         isreal:实矩阵判断函数。
+12、矩阵函数
+•         norm:矩阵或向量范数。
+•         normest:向量、矩阵2范数。
+•          rank:矩阵的秩。
+•          det:矩阵行列式的值。
+•          trace:矩阵的迹(主对角线元素之和)。
+•          inv:矩阵逆。
+13、特征多项式、特征值
+•          poly:特征多项式。
+•          poly2sym:多项式表示。
+•          eig:特征值和特征向量。
+•         eigs:特征值。
+14、矩阵函数
+•         expm:矩阵指数。
+•         logm:矩阵对数。
+•         sqrtm:矩阵平方根。
+15、坐标转换
+•         cart2sph:转换直角坐标为球坐标。
+•         cart2pol:转换直角坐标为极坐标。
+•      pol2cart:转换极坐标为直角坐标。
+•      sph2cart:转换球坐标为直角坐标。
+16、坐标轴控制
+•      axis:控制坐标轴范围。
+•      grid on/off:栅格线保持、取消。
+•      hold on/off:图形保持/取消。
+•      box on/off:图形四周都显示/常规坐标轴。
+例1、
+•      [x,y]=meshgrid(0:0.5:10);
+•      z=y.*sin(x.^2)+cos(y);
+•      surf(x,y,z)
+•      v=[-20,10,-20,10,-10,50];%坐标轴范围控制
+•      axis(v)％注意该语句必须在图形显示语句的后面
+说明：二维图形是类似的。
+例2、axis(‘控制字符串’)：可以选择
+不同的字符串完成对坐标轴的操作。
+控制字符串有：
+（1）auto:自动模式，使得图形的坐标范围满足图中一切图元素。
+（2）axis:将当前坐标设置固定，使
+用hold命令后，图形仍以此作为坐标界限。
+（3）manual:以当前的坐标限定绘制。
+（4）tight:将坐标限控制在指定的数据范围内。
+（5）equal:使坐标轴分度相等。
+（6）off:取消对坐标轴的一切设置，包括系统的自动设置。
+（7）on:恢复对坐标轴的一切设置。
+•         [x,y]=meshgrid(-1:0.1:1,-1:0.1:1);
+•         z=x.^2+y.^2;
+•         surf(x,y,z)
+•         box on
+
+17、基本二维图形
+•         plot:线性绘图。
+•         loglog:双对数坐标图。
+•         semilogx:半对数（x）坐标图。
+•         semilogy:半对数（y）坐标图。
+•          polar:极坐标图。
+•          subplot:分割图窗
+•          refline(slope,intercept):加参考线
+18、图形注解
+•          legend:图形标签.
+•          xlable:x轴标签。
+•          ylable:y轴标签。
+•          title:图形题目。
+•          text:文字注解。
+19、特殊二维图形
+•          bar:条形图。
+•          barh:水平柱图。
+•          ezplot:符号函数图。
+•          fplot:绘制字符串指定的函数名的函数图。如fplot(‘sin(x)’,[2,3])。
+•         pie:饼图。
+•         plotmatrix:绘矩阵点图。
+•         stem:2维火柴杆图。
+•         stem3：3维火柴杆图。
+20、等高线图和向量图
+•         contour:等高线图。
+•         contour3:三维等高线图。
+•         quiver:向量图。
+例
+  [x,y] = meshgrid(-2:.2:2,-1:.15:1);
+  z = x .* exp(-x.^2 - y.^2); 
+  [px,py] = gradient(z,2);
+  contour(x,y,z),
+  hold on
+  quiver(x,y,px,py)
+  hold off
+ 
+21、特殊三维图形
+•          comet3:三维彗星轨线（comet(x,y)画二维彗星线）。
+　t = -10*pi:pi/500:10*pi  　　
+　comet3(sin(t),cos(t),t)
+•          meshc(x,y,z):画出三维网格与等高线 图，类似sutfc。
+•          meshz(x,y,z):增加边界面屏蔽。
+•          stem3:三维火柴干图。
+•          例  a=rand(3)；
+      stem3(a)；
+22、固体模型
+•          cylinder:生成圆柱。格式为[x,y,z]= cylinder(r,n),r为母线半    径，N为显示的母线条数 mesh(x,y,z)或surf(x,y,z)显示单位 高度柱面。
+t = -1*pi:pi/20:1*pi;
+r=5+cos(t);
+[x,y,z]=cylinder(r,30)
+surf(x,y,z)
+•          sphere: 生成单位球面。例
+   [x,y,z]=sphere(40)  %40为子午线条 数，sphere默认为20条。
+ mesh(x,y,z)或surf(x,y,z)  %画球面
+    axis(‘equal’)     %坐标轴刻度相同
+例、绕地球运动的飞行物
+•         [x,y,z]=sphere(50);
+•         mesh(x,y,z);
+•         hold on
+•         v=[-6,6,-6,6,-6,6];
+•         axis(v);
+•         axis('off')
+•         t= 0:pi/1000:200*pi;
+•         x=6*sin(t);
+•         y=2*cos(t);
+•         z=zeros(size(t));
+•         comet3(x,y,z)
+23、四维表现图
+　对于三维图形自变量是二维的，对于三个自变量的函数w=fx,y,z),其其图形应该是四维的，由于我们所处的空间和思维的局限性，在计算机屏幕上只能表现出三维空间。为了表现四维图像，可利用三维实体的四维切片色图，用三维实体上的颜色来描述函数值的变化情况。
+•         MATLAB中用slice函数来完成
+　（1）slice(x,y,z,w,sx,sy.sz):绘制向量sx,sy,sz中的点沿x,y,z轴方向的切片图，v的大小决定了每一点的颜色。
+　（2）slice(x,y,z,w,x1，y1,z1):按数组x1，y1,z1切片（按坐标轴单位）。
+　（3）slice(w,x1，y1,z1):按数组x1，y1,z1切片（按x,y,z的网格单位进行切片。
+　（4）slice(w,sx，sy,sz):按x,y,z的网格单位进行切片。
+例、程序如下：
+[x,y,z]=meshgrid(-2:0.2:2,-2:0.25:2,-2:0.16:2);
+w=x.^2+y.^2+z.^2;
+%slice(x,y,z,a,x,y,z)
+x1=1:15;
+y1=1:10;
+z1=1:10
+subplot(2,2,1),slice(x,y,z,w,1,1,[0,1]);
+subplot(2,2,2),slice(w,1,1,[0,1]);
+subplot(2,2,3),slice(x,y,z,w,x1,y1,z1);hold on
+subplot(2,2,4),slice(w,x1,y1,z1);
+colorbar %色轴，它可以标注颜色与数值之间的关系
+
+24、数据文件
+（1）Save(‘x1’，‘变量1’， ‘变量2’，…)：把变量1，变量2，…的数据保存到名字为x1.mat的数据文件中；当变量缺省时，保存所有变量的数据。数据文件自己起名字，变量为程序中的已赋值的变量。
+ 请看下面例子
+w='Xingtai College'
+x=[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1];
+y=[0.002,0.114,0.189,0.316,0.394,0.434,0.427,0.409,0.379,0.327,0.254];
+a=x'*y;
+save(‘x1’)％所有的变量全部保存
+save(‘x2’,‘w’)％只保存w变量的数据
+save('x3','w','x') ％保存w,x变量的数据
+save(‘x4’,‘w’,‘x’,‘y’,‘a’) ％保存w,x,y,a变量的数据
+％用load(‘文件名’)可把数据文件调入内存。
+25、时间函数
+（1）calendar:返回当前日历
+（2）calendar(year, month):反回指定的年月日历。
+（3） calendar(data):返回公元0000年算起的天数（data）的日历。
+（4）cputime:以秒返回cpu当前时间。
+（5）tic,toc启用、关闭计时器。
+（6）clock: [year month day hour minute seconds]
+%计算运行程序所用的时间
+•         t1=clock
+•         ….
+•         t2=clock
+•         etime(t2,t1)％elapsed time from t1 to t2或者
+•         tic%打开计时器
+•         …
+•         toc%关闭计时器，且显示所用的时间
+•         或者
+•         T1=cputime
+•         …
+•         T2=cputime
+•         E=T2-t1
+
+说明：通过计算程序所用的时间可以来
+衡量解决同样的一个问题的所编写的不
+同程序的优劣。
+例１、
+•         t1=clock;
+•         for k=1:m
+•         x0=[1;0];
+•         T=0.2;
+•         m=1000;
+•         f=inline('[-sin(t);cos(t)]');
+•             x1=x0+f((k-1)*T)*T;
+•             x0=x1;
+•             x(k)=x1(1);
+•             y(k)=x1(2);
+•         end
+•         comet(x,y)
+•         t2=clock;
+•         t=etime(t2,t1)
+•         t1=clock;
+•         x0=[1;0];
+•         T=0.2;
+•         m=1000;
+•         f=inline('[-sin(t);cos(t)]');
+•         for k=1:m
+•             x1=x0+f((k-1)*T)*T;
+•             x0=x1;
+•             x(k)=x1(1);
+•             y(k)=x1(2);
+•         end
+•         comet(x,y)
+•         t2=clock;
+•         t=etime(t2,t1)
+
+

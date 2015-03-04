@@ -1,0 +1,10 @@
+ 1. 速度查询 ：select benchmark(100000,10+10);查看运行时间
+ 2. 提示输入域名:
+    httpd.conf中加入:ServerName localhost 
+ 3. 优化表
+    optimize table table_name[,table_name]
+ 4. 查看系统信息
+    show table status [from database_name] like 'something';
+    show status;
+    show create table table_name;
+    desc table_name

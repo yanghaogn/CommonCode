@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+   <title>网页管理 </title>
+   	<script type="text/javascript" src="script/prototype.js"></script>
+		<script type="text/javascript" src="script/rico.js"></script>
+	 
+   <script language="Javascript">
+		var _iG,_iS,_dG,_dS;
+		function createAjax(){
+			if(window.ActiveXObject){
+				try{
+					return new ActiveXObject("Msxml2.XMLHTTP");
+				}catch(e){
+					try{
+						return new ActiveXObject("Microsoft.XMLHTTP");
+					}catch(e2){
+						return null;
+					}
+				}
+			}else if(window.XMLHttpRequest){
+				return new XMLHttpRequest();
+			}else{
+				return null;
+			}
+		}
+		function onInsertGroup(){
+			if(_iG.readyState==4){
+				if(_iG.status==200){
+					document.getElementById('_gShow').innerHTML=_iG.responseText;
+					displayGroup("displayWebsite.php"); 
+					document.getElementById('_gName').value="";
+					document.getElementById('_gInfo').value="";
+				}else{
+					document.getElementById('_gShow').innerHTML="添加错误，请重试";
+				}
+			}			 
+		}
+		function onInsertSite(){
+			if(_iS.readyState==4){
+				if(_iS.status==200){
+					document.getElementById('_sShow').innerHTML=_iS.responseText;
+					document.getElementById('_sAddr').value="";
+					document.getElementById('_sName').value="";
+					document.getElementById('_sInfo').value="";
+					displaySites("displayWebsite.php"); 
+				}else{
+					document.getElementById('_sShow').innerHTML="添加错误，请重试";
+				}
+			}			 
+		}
+		function onDisplayGroup(){
+			if(_dG.readyState==4){
+				if(_dG.status==200){
+					document.getElementById('_sG').innerHTML=_dG.responseText;
+				}else{
+					document.getElementById('_sG').innerHTML="添加网页错误，请重试";
+				}
+			}
+			 
+		}
+		function onDisplaySites(){
+			if(_dS.readyState==4){
+				if(_dS.status==200){
+					document.getElementById('_aP').innerHTML=_dS.responseText;
+				}else{
+					document.getElementById('_sG').innerHTML="无法显示页面";
+				}
+			}
+			 
+		}
+		function onDislayUser(){
+			if(ajaxDisplay.readyState==4){
+				if(ajaxDisplay.status==200){
+					document.getElementById('p_users').innerHTML=ajaxDisplay.responseText;
+					 
+				}else{
+					alert("无法显示用户");
+				}
+			}
+		}
+		 
+		
+		function insertGroup(uri){
+			$name=encodeURIComponent(document.getElementById('_gName').value);
+		 	if($name=="") {
+		 		document.getElementById('_gShow').innerHTML="请输入组名";
+		 		return;
+		 	}
+		 	$info=encodeURIComponent(document.getElementById('_gInfo').value);
+			_iG=createAjax();
+			if(!_iG){
+				alert('使用不兼容XMLHttpRequest的浏览器');
+				return 0;
+			}
+			$send=uri+"?type=group&name="+$name+"&info="+$info;
+			_iG.onreadystatechange=onInsertGroup;
+			_iG.open("GET",$send,true);	
+			_iG.send();						
+		}
+		function insertSite(uri){
+			$addr=encodeURIComponent(document.getElementById('_sAddr').value);
+			$name=encodeURIComponent(document.getElementById('_sName').value);
+			$info=encodeURIComponent(document.getElementById('_sInfo').value);
+			$group=encodeURIComponent(document.getElementById('_sG').value);
+		 	if($addr=="") {
+		 		document.getElementById('_sShow').innerHTML="请输入网页";
+		 		return;
+		 	}
+		 	if($name=="") {
+		 		document.getElementById('_sShow').innerHTML="请输入网页名";
+		 		return;
+		 	}
+			_iS=createAjax();
+			if(!_iS){
+				alert('使用不兼容XMLHttpRequest的浏览器');
+				return 0;
+			}
+			$send=uri+"?type=addr&name="+$name+"&addr="+$addr+"&info="+$info+"&group="+$group;
+			_iS.onreadystatechange=onInsertSite;
+			_iS.open("GET",$send,true);	
+			_iS.send();						
+		}
+		function displayGroup(uri){
+			_dG=createAjax();
+			if(!_dG){
+				alert('使用不兼容XMLHttpRequest的浏览器');
+				return 0;
+			}
+			$send=uri+"?type=group"
+			_dG.onreadystatechange=onDisplayGroup;
+			_dG.open("GET",$send,true);	
+			_dG.send();						
+		}
+		function displaySites(uri){
+			_dS=createAjax();
+			if(!_dG){
+				alert('使用不兼容XMLHttpRequest的浏览器');
+				return 0;
+			}
+			$send=uri+"?type=sites&num=5";
+			_dS.onreadystatechange=onDisplaySites;
+			_dS.open("GET",$send,true);	
+			_dS.send();						
+		}
+		function onLoad(){
+			displayGroup("displayWebsite.php"); 
+			displaySites("displayWebsite.php");
+		}
+		</script>
+</head>
+<body  onload=onLoad()>
+   <fieldset >
+	  	<legend  id="_gShow" >添加组 </legend>
+		组名:<input type="text" id="_gName"></input>
+		描述:<input type="text" id="_gInfo"></input>
+		<input type="button" id="_gInsert" value="确定" onclick="insertGroup('insertSite.php')"></input>
+  </fieldset>
+   <fieldset >
+	  	<legend  id="_sShow" >添加网页 </legend>
+		组名:<select id="_sG"></select>
+		网页:<input type="text" id="_sAddr"></input>
+		名字:<input type="text" id="_sName"></input>
+		描述:<input type="text" id="_sInfo"></input>
+		<input type="button" id="_sInsert" value="确定" onclick="insertSite('insertSite.php')"></input>
+  </fieldset>
+  <fieldset >
+	  	<legend  id="_aS">显示网页 </legend>
+		<p id="_aP"></p>
+  </fieldset>
+</body>
+</html>
