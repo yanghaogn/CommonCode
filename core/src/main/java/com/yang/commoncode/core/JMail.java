@@ -19,8 +19,6 @@ public class JMail {
     private SMTPAuthenticator() {
     }
 
-    ;
-
     public static SMTPAuthenticator getInstance() {
       if (INSTANCE == null) {
         synchronized (SMTPAuthenticator.class) {
@@ -31,7 +29,6 @@ public class JMail {
       }
       return INSTANCE;
     }
-
     @Override
     public PasswordAuthentication getPasswordAuthentication() {
       return new PasswordAuthentication(name, password);

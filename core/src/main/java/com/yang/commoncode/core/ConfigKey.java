@@ -5,5 +5,4 @@ package com.yang.commoncode.core;
  */
 public class ConfigKey {
   public static String COMMON_DB_PORT = "3360";
-  
 }
