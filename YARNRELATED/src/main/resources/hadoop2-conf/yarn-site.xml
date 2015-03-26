@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+
+ <!-- Resource Manager Configs -->
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>sist21</value>
+    <description>The hostname of the RM.</description>
+  </property>   
+  <property>
+    <name>yarn.resourcemanager.address</name>
+    <value>${yarn.resourcemanager.hostname}:8032</value>
+    <description>The address of the applications manager interface in the RM.</description>
+  </property> 
+  <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>${yarn.resourcemanager.hostname}:8030</value>
+    <description>The address of the scheduler interface.</description>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>${yarn.resourcemanager.hostname}:8088</value>
+    <description>The http address of the RM web application.</description>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.https.address</name>
+    <value>${yarn.resourcemanager.hostname}:8090</value>
+    <description>The https adddress of the RM web application.</description>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>${yarn.resourcemanager.hostname}:8031</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>${yarn.resourcemanager.hostname}:8033</value>
+    <description>The address of the RM admin interface.</description>
+  </property>
+
+   <!--The address of the container manager in the NM.-->
+   <property>
+    <name>yarn.nodemanager.address</name>
+    <value>0.0.0.0:12000</value>
+  </property>
+  <!--  Address where the localizer IPC is.-->
+  <property>
+    <name>yarn.nodemanager.localizer.address</name>
+    <value>0.0.0.0:12002</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+    <description>the valid service name should only contain a-zA-Z0-9_ and can not start with numbers</description>
+  </property>
+	
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property> 
+
+  <property>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value>file:///usr/local/hadoop-2/yarn.nodemanager.log-dirs</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>/usr/local/hadoop-2/yarn.nodemanager.remote-app-log-dir</value>
+    <description>Where to aggregate logs to.</description>
+  </property>
+  <property>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value>file:///usr/local/hadoop-2/yarn.nodemanager.local-dirs</value>
+    <description>List of directories to store localized files in. An application's localized file directory will be found in:${yarn.nodemanager.local-dirs}/usercache/${user}/appcache/application_${appid}. Individual containers' work directories, called container_${contid}, will be subdirectories of this.</description>
+  </property> 
+
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>12288</value>
+    <description>Amount of physical memory, in MB, that can be allocated for containers.</description>
+  </property>
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>1024</value>
+    <description>单个Container可申请的最少内存资源，单位mb</description>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>2048</value>
+    <description>单个Container可申请的最多内存资源，单位mb</description>
+  </property>
+
+  <property>
+      <name>yarn.nodemanager.resource.cpu-vcores</name>
+      <value>4</value>
+    <description>Number of CPU cores that can be allocated for containers.</description>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.am.max-attempts</name>
+    <value>10</value>
+  </property>
+
+  <property>
+      <name>yarn.log-aggregation-enable</name>
+      <value>true</value>
+      <description> 将日志聚集在HDFS上 </description>
+  </property>
+  <property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>5184000</value>
+    <description>日志存活时间,单位s</description>
+  </property>
+<!--
+  <property>
+    <description>Classpath for typical applications.</description>
+    <name>yarn.application.classpath</name>
+    <value>
+      $HADOOP_CONF_DIR,
+      $HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,
+      $HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,
+      $HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,
+      $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
+    </value>
+  </property>
+-->
+</configuration>

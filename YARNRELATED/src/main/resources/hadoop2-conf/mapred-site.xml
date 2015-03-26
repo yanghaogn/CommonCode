@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+    <description>The runtime framework for executing MapReduce jobs.Can be one of local, classic or yarn.</description>
+  </property> 
+  
+  <!--Fraction of the number of maps in the job which should be complete before reduces are scheduled for the job. -->
+  <property>
+    <name>mapreduce.job.reduce.slowstart.completedmaps</name>
+    <value>1</value>
+  </property>
+
+  <property>
+    <name>mapred.system.dir</name>
+    <value>/usr/local/hadoop-2/mapred.system.dir</value>
+  </property> 
+	 
+  <property>
+    <name>mapred.local.dir</name>
+    <value>/usr/local/hadoop-2/mapred.local.dir</value>
+  </property> 
+
+<!-- jobhistory properties -->
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>sist21:10020</value>
+    <description>MapReduce JobHistory Server IPC host:port</description>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>sist21:19888</value>
+    <description>MapReduce JobHistory Server Web UI host:port</description>
+  </property>
+
+  <property>
+    <name>yarn.app.mapreduce.am.staging-dir</name>
+    <value>/usr/local/hadoop-2/user</value>
+    <description>configure staging directory-</description>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.intermediate-done-dir</name>
+    <value>/usr/local/hadoop-2/mapreduce.jobhistory.intermediate-done-dir</value>
+    <description>yarn运行时需要一个临时目录创建临时文件，存放在HDFS上</description>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.done-dir</name>
+    <value>/usr/local/hadoop-2/mapreduce.jobhistory.done-dir</value>
+    <description>yarn运行时需要一个临时目录创建临时文件</description>
+  </property>
+
+  <property>
+    <name>mapreduce.tasktracker.outofband.heartbeat</name>
+    <value>true</value>
+    <description>任务完成后，让tasktracker发送out-of-band心跳，来减少延迟</description>
+  </property>
+
+  <property>
+    <name>mapreduce.jobtracker.heartbeats.in.second</name>
+    <value>100</value>
+    <description>Expert: Approximate number of heart-beats that could arrive at JobTracker in a second. Assuming each RPC can be processed in 10msec, the default value is made 100 RPCs in a second.调节TaskTracker-to-JobTracker心跳的最小间隔到一个较小的值,可能会改善MapReduce小型集群性能</description>
+  </property>
+
+  <property>
+    <name>hadoop.proxyuser.mapred.groups</name>
+    <value>*</value>
+    <description>make sure proxying is enabled for the mapred user</description>
+  </property>
+
+  <property>
+    <name>hadoop.proxyuser.mapred.hosts</name>
+    <value>*</value>
+    <description>make sure proxying is enabled for the mapred user</description>
+  </property>
+
+  <property>
+    <name>mapred.map.child.java.opts</name>
+    <value>-Xmx1024m</value>
+  </property>
+
+  <property>
+    <name>mapred.reduce.child.java.opts</name>
+    <value>-Xmx2048m</value>
+  </property>
+
+  <property>
+    <name>mapreduce.reduce.memory.mb</name>
+    <value>2048</value>
+  </property>
+</configuration>
