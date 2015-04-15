@@ -11,12 +11,41 @@
   <modules>
     <module>core</module>
     <module>YARNRELATED</module>
+    <module>MapReduce</module>
+    <module>hdfs</module>
   </modules>
   <properties>
     <hadoop.version>2.6.0</hadoop.version>
   </properties>
   <dependencies>
-
   </dependencies>
-
+  <build>
+    <finalName>CommonCode</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <encoding>utf8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/*Test*.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
