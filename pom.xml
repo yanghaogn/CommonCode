@@ -13,6 +13,7 @@
     <module>YARNRELATED</module>
     <module>MapReduce</module>
     <module>hdfs</module>
+    <module>Algorithm</module>
   </modules>
   <properties>
     <hadoop.version>2.6.0</hadoop.version>

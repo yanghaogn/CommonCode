@@ -15,9 +15,6 @@ import java.io.IOException;
  * Created by yang on 2015/3/30.
  */
 public class MaxTemperature {
-  
-
-
 
   public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
     JobConf jobConf = new JobConf();
